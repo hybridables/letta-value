@@ -26,5 +26,38 @@
   "files": [
     "index.js"
   ],
-  "keywords": []
+  "keywords": [
+    "array",
+    "arrays",
+    "async",
+    "asynchronous",
+    "callback",
+    "cb",
+    "control",
+    "coro",
+    "coroutine",
+    "date",
+    "dates",
+    "done",
+    "error",
+    "errors",
+    "flow",
+    "fn",
+    "func",
+    "function",
+    "generator",
+    "genfn",
+    "gens",
+    "next",
+    "promise",
+    "promisify",
+    "str",
+    "stream",
+    "string",
+    "strings",
+    "sync",
+    "synchronous",
+    "thunkgs",
+    "yield"
+  ]
 }
