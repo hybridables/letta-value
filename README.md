@@ -14,10 +14,103 @@ npm i letta-value --save
 ## Usage
 > For more use-cases see the [tests](./test.js)
 
+- `[val]` **{Mixed}** believe me, everything
+- `return` **{Promise}**
+
+**Example**
+
 ```js
-var lettaValue = require('letta-value')
+const lettaValue = require('letta-value')
+
+// strings
+lettaValue('foo bar').then(res => {
+  console.log(res) // => 'foo bar'
+})
+
+// numbers
+lettaValue(123).then(res => {
+  console.log(res) // => 123
+})
+
+// errors
+lettaValue(new Error('foo err'))
+.catch(err => {
+  console.error(err.message) // => 'foo err'
+})
+
+// functions
+lettaValue(function noopFn () {})
+.then(res => {
+  // res is the noop function
+  // it won't be executed or anything
+  console.log(res.name) // => 'noopFn'
+}, console.error)
 ```
 
+Meant to be used with `letta`, because `letta` only accept function.  
+The following is [`always-done`](https://github.com/hybridables/always-done) package, completely built on top of [`letta`](https://github.com/hybridables/letta) and `letta-value`
+
+```js
+var letta = require('letta')
+var lettaValue = require('letta-value')
+
+module.exports = function alwaysDone (val) {
+  if (typeof val === 'function') {
+    return letta.apply(this, arguments).then(lettaValue)
+  }
+  return lettaValue(val)
+}
+```
+
+And few examples. For more see the documentation, examples and tests of [`always-done`](https://github.com/hybridables/always-done).
+
+```js
+const fs = require('fs')
+const alwaysDone = require('always-done')
+```
+
+Reading file as buffer with core module function `fs.readFileSync`.  
+This example also shows correct handling of optional arguments.
+
+```js
+alwaysDone(fs.readFileSync, 'package.json')
+.then(res => {
+  console.log(Buffer.isBuffer(res)) // => true
+}, console.error)
+```
+
+Parsing JSON string
+
+```js
+alwaysDone('{"foo":"bar"}')
+.then(JSON.parse)
+.then(data => {
+  console.log(data) // => { foo: 'bar' }
+}, console.error)
+```
+
+Stringify given object and ident it
+
+```js
+alwaysDone(JSON.stringify, {foo: 'bar'}, null, 2)
+.then(data => {
+  console.log(data)
+  // =>
+  // {
+  //   "foo": "bar"
+  // }
+}, console.error)
+```
+
+Reading and parsing package.json
+
+```js
+alwaysDone(fs.readFileSync, 'package.json', 'utf8')
+.then(JSON.parse)
+.then(data => {
+  console.log(data.name) // => 'pkg-name'
+}, console.error)
+```
 
 ## Contributing
 Pull requests and stars are always welcome. For bugs and feature requests, [please create an issue](https://github.com/hybridables/letta-value/issues/new).  
