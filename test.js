@@ -113,14 +113,6 @@ test('should accept sync function returning failing observable', function (done)
   })
 })
 
-test('should accept sync (fs.readFileSync) function and handle buffer', function (done) {
-  alwaysDone(fs.readFileSync, 'package.json')
-  .then(function (buf) {
-    test.strictEqual(isBuffer(buf), true)
-    done()
-  }, done)
-})
-
 test('should accept sync function which returns stream and handle completion', function (done) {
   alwaysDone(function () {
     return fs.createReadStream('package.json')
@@ -139,19 +131,27 @@ test('should accept sync function which returns failing stream completion', func
   })
 })
 
+test('should accept sync (fs.readFileSync) function and handle buffer', function (done) {
+  alwaysDone(fs.readFileSync, 'package.json')
+  .then(function (buf) {
+    test.strictEqual(isBuffer(buf), true)
+    done()
+  }, done)
+})
+
+test('should accept asynchronous function and get buffer', function (done) {
+  var read = fs.readFile
+  alwaysDone(read, 'package.json').then(function (res) {
+    test.strictEqual(isBuffer(res), true)
+    done()
+  }, done)
+})
+
 test('should accept async (callback) functions and handle utf8 result', function (done) {
   alwaysDone(fs.readFile, 'package.json', 'utf8')
   .then(JSON.parse)
   .then(function (data) {
     test.strictEqual(data.name, 'letta-value')
-    done()
-  }, done)
-})
-
-test('should accept async (fs.readFile) functions and handle buffer result', function (done) {
-  alwaysDone(fs.readFile, 'package.json')
-  .then(function (buf) {
-    test.strictEqual(isBuffer(buf), true)
     done()
   }, done)
 })
