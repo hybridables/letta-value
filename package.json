@@ -1,0 +1,30 @@
+{
+  "name": "letta-value",
+  "version": "0.0.0",
+  "description": "Extends `letta` to accept and handles more than functions only. Handles all kind of results from `letta`. Basically, creating promise from everything - strings, arrays, objects, functions, generators, generator functions, promises, streams, child processes, observables, maps, symbols, dates and etc.",
+  "repository": "hybridables/letta-value",
+  "author": "Charlike Mike Reagent <@tunnckoCore> (http://www.tunnckocore.tk)",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "test": "standard && node test.js"
+  },
+  "dependencies": {
+    "is-child-process": "^1.0.0",
+    "is-node-stream": "^1.0.0",
+    "is-typeof-error": "^1.0.1",
+    "letta": "^0.2.0",
+    "on-stream-end": "^1.0.0",
+    "sliced": "^1.0.1",
+    "stream-exhaust": "^1.0.1"
+  },
+  "devDependencies": {
+    "assertit": "^0.1.0",
+    "is-buffer": "^1.1.0",
+    "rx": "^4.0.1"
+  },
+  "files": [
+    "index.js"
+  ],
+  "keywords": []
+}
