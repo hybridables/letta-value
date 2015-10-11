@@ -47,8 +47,10 @@ lettaValue(function noopFn () {})
 }, console.error)
 ```
 
+## Extended examples
+
 Meant to be used with `letta`, because `letta` only accept function.  
-The following is [`always-done`](https://github.com/hybridables/always-done) package, completely built on top of [`letta`](https://github.com/hybridables/letta) and `letta-value`
+The following is [`always-done`](https://github.com/hybridables/always-done) package, which is completely built on top of [`letta`](https://github.com/hybridables/letta) and `letta-value`
 
 ```js
 var letta = require('letta')
@@ -79,7 +81,7 @@ alwaysDone(fs.readFileSync, 'package.json')
 }, console.error)
 ```
 
-Parsing JSON string
+### Parsing JSON string
 
 ```js
 alwaysDone('{"foo":"bar"}')
@@ -89,7 +91,7 @@ alwaysDone('{"foo":"bar"}')
 }, console.error)
 ```
 
-Stringify given object and ident it
+### Stringify given object and ident it
 
 ```js
 alwaysDone(JSON.stringify, {foo: 'bar'}, null, 2)
@@ -102,7 +104,7 @@ alwaysDone(JSON.stringify, {foo: 'bar'}, null, 2)
 }, console.error)
 ```
 
-Reading and parsing package.json
+### Reading and parsing package.json
 
 ```js
 alwaysDone(fs.readFileSync, 'package.json', 'utf8')
