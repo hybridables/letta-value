@@ -26,21 +26,21 @@ function alwaysDone (val) {
 }
 
 test('should accept string and handle it from `.then`', function (done) {
-  alwaysDone('foo bar baz').then(function (res) {
+  lettaValue('foo bar baz').then(function (res) {
     test.strictEqual(res, 'foo bar baz')
     done()
   }, done)
 })
 
 test('should accept array and handle it from `.then`', function (done) {
-  alwaysDone(['foo', 'bar', 'baz']).then(function (res) {
+  lettaValue(['foo', 'bar', 'baz']).then(function (res) {
     test.deepEqual(res, ['foo', 'bar', 'baz'])
     done()
   }, done)
 })
 
 test('should accept Error instance and catch it from `.catch`', function (done) {
-  alwaysDone(new Error('foo err')).catch(function (err) {
+  lettaValue(new Error('foo err')).catch(function (err) {
     test.strictEqual(err.message, 'foo err')
     done()
   })
