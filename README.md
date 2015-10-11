@@ -112,6 +112,14 @@ alwaysDone(fs.readFileSync, 'package.json', 'utf8')
 }, console.error)
 ```
 
+
+## Related
+- [letta](https://github.com/hybridables/letta): Let's move to promises! Drop-in replacement for `co@4`, but on steroids. Accepts sync, async and generator functions.
+- [native-or-another](https://github.com/tunnckocore/native-or-another): Always will expose native `Promise` if available, otherwise `Bluebird` but only if you don't give another promise module like `q` or `promise` or what you want.
+- [native-promise](https://github.com/tunnckocore/native-promise): Get native `Promise` or falsey value if not available.
+- [redolent](https://github.com/tunnckocore/redolent): Simple promisify a callback-style function with sane defaults. Support promisify-ing sync functions.
+
+
 ## Contributing
 Pull requests and stars are always welcome. For bugs and feature requests, [please create an issue](https://github.com/hybridables/letta-value/issues/new).  
 But before doing anything, please read the [CONTRIBUTING.md](./CONTRIBUTING.md) guidelines.
