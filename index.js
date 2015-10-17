@@ -7,29 +7,26 @@
 
 'use strict'
 
-var letta = require('letta')
-var isError = require('is-typeof-error')
-var isNodeStream = require('is-node-stream')
-var isChildProcess = require('is-child-process')
+var utils = require('./utils')
 
 module.exports = function lettaValue (val) {
-  if (isNodeStream(val) || isChildProcess(val)) {
-    return letta(require('on-stream-end'), require('stream-exhaust')(val))
+  if (utils.isNodeStream(val) || utils.isChildProcess(val)) {
+    return utils.letta(utils.onStreamEnd, utils.streamExhaust(val))
   }
   if (val && typeof val.subscribe === 'function') {
     if (val.value) {
-      return letta(function () {
+      return utils.letta(function () {
         return val.value
       })
     }
-    return letta(subscribe, val)
+    return utils.letta(subscribe, val)
   }
-  if (isError(val)) {
-    return letta(function () {
+  if (utils.isTypeofError(val)) {
+    return utils.letta(function () {
       throw val
     })
   }
-  return letta(function () {
+  return utils.letta(function () {
     return val
   })
 }
@@ -40,6 +37,6 @@ module.exports = function lettaValue (val) {
 
 function subscribe (val, callback) {
   val.subscribe(function noop () {}, callback, function onComplete () {
-    callback.apply(this, [null].concat(require('sliced')(arguments)))
+    callback.apply(this, [null].concat(utils.sliced(arguments)))
   }.bind(this))
 }

@@ -13,7 +13,8 @@
     "is-child-process": "^1.0.0",
     "is-node-stream": "^1.0.0",
     "is-typeof-error": "^1.0.1",
-    "letta": "^0.2.0",
+    "lazy-cache": "^0.2.3",
+    "letta": "*",
     "on-stream-end": "^1.0.0",
     "sliced": "^1.0.1",
     "stream-exhaust": "^1.0.1"
@@ -24,7 +25,8 @@
     "rx": "^4.0.1"
   },
   "files": [
-    "index.js"
+    "index.js",
+    "utils.js"
   ],
   "keywords": [
     "array",
