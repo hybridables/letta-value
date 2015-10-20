@@ -1,6 +1,6 @@
 {
   "name": "letta-value",
-  "version": "0.2.0",
+  "version": "1.0.0",
   "description": "Extends `letta` to accept and handles more than functions only. Handles all kind of results from `letta`. Basically, creating promise from everything - strings, arrays, objects, functions, generators, generator functions, promises, streams, child processes, observables, maps, symbols, dates and etc.",
   "repository": "hybridables/letta-value",
   "author": "Charlike Mike Reagent <@tunnckoCore> (http://www.tunnckocore.tk)",
